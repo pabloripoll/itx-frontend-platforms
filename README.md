@@ -1,8 +1,7 @@
-<div id="top-header" style="with:100%;height:auto;text-align:right;">
-    <img src="./resources/docs/images/pr-banner-long.png">
-</div>
+# ITX FRONT END EXAM
 
-# ITX
+- [Project Specifications](./resources/docs/Specs-EN.md)
+
 
 
 ---
