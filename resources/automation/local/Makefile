@@ -57,32 +57,32 @@ local-ownership-set: ## sets recursively local root directory ownership
 .PHONY: webapp-hostcheck webapp-info webapp-set webapp-create webapp-network webapp-ssh webapp-start webapp-stop webapp-destroy
 
 webapp-hostcheck: ## shows this project ports availability on local machine for webapp container
-	cd platform/$(WEBAPP_PLTF) && $(MAKE) port-check
+	cd platforms/$(WEBAPP_PLTF) && $(MAKE) port-check
 
 webapp-info: ## shows the webapp docker related information
-	cd platform/$(WEBAPP_PLTF) && $(MAKE) info
+	cd platforms/$(WEBAPP_PLTF) && $(MAKE) info
 
 webapp-set: ## sets the webapp enviroment file to build the container
-	cd platform/$(WEBAPP_PLTF) && $(MAKE) env-set
+	cd platforms/$(WEBAPP_PLTF) && $(MAKE) env-set
 
 webapp-create: ## creates the webapp container from Docker image
-	cd platform/$(WEBAPP_PLTF) && $(MAKE) build up
+	cd platforms/$(WEBAPP_PLTF) && $(MAKE) build up
 
 webapp-network: ## creates the webapp container network - execute this recipe first before others
 	$(MAKE) webapp-stop
-	cd platform/$(WEBAPP_PLTF) && $(DOCKER_COMPOSE) -f docker-compose.yml -f docker-compose.network.yml up -d
+	cd platforms/$(WEBAPP_PLTF) && $(DOCKER_COMPOSE) -f docker-compose.yml -f docker-compose.network.yml up -d
 
 webapp-ssh: ## enters the webapp container shell
-	cd platform/$(WEBAPP_PLTF) && $(MAKE) ssh
+	cd platforms/$(WEBAPP_PLTF) && $(MAKE) ssh
 
 webapp-start: ## starts the webapp container running
-	cd platform/$(WEBAPP_PLTF) && $(MAKE) start
+	cd platforms/$(WEBAPP_PLTF) && $(MAKE) start
 
 webapp-stop: ## stops the webapp container but its assets will not be destroyed
-	cd platform/$(WEBAPP_PLTF) && $(MAKE) stop
+	cd platforms/$(WEBAPP_PLTF) && $(MAKE) stop
 
 webapp-restart: ## restarts the running webapp container
-	cd platform/$(WEBAPP_PLTF) && $(MAKE) restart
+	cd platforms/$(WEBAPP_PLTF) && $(MAKE) restart
 
 webapp-destroy: ## destroys completly the webapp container
 	echo ${C_RED}"Attention!"${C_END};
@@ -90,7 +90,7 @@ webapp-destroy: ## destroys completly the webapp container
 	@echo -n ${C_RED}"Are you sure to proceed? "${C_END}"[y/n]: " && read response && if [ $${response:-'n'} != 'y' ]; then \
         echo ${C_GRN}"K.O.! container has been stopped but not destroyed."${C_END}; \
     else \
-		cd platform/$(WEBAPP_PLTF) && $(MAKE) stop clear destroy; \
+		cd platforms/$(WEBAPP_PLTF) && $(MAKE) stop clear destroy; \
 		echo -n ${C_GRN}"Do you want to clear DOCKER cache? "${C_END}"[y/n]: " && read response && if [ $${response:-'n'} != 'y' ]; then \
 			echo ${C_YEL}"The following command is delegated to be executed by user:"${C_END}; \
 			echo "$$ $(DOCKER) system prune"; \
