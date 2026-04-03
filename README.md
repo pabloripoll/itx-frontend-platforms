@@ -52,7 +52,7 @@ Now, you can build and run the application Docker container
 $ make webapp-create
 ```
 
-To know each container information you can execute `$ make webapp-info` *(except k6 container that is not continuously running)* or by each container, as e.g. the API:
+To know each container information you can execute `$ make webapp-info`:
 ```sh
 $ make webapp-info
 ITX FRONTEND EXAM: NGINX - NODEJS 25
